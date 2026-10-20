@@ -11,6 +11,20 @@
       ],
       "file": "music/intro_kho_nhac.ogg",
       "url": "https://cdn.jsdelivr.net/gh/thaihuy1101/Kho_nhac@main/music/intro_kho_nhac.ogg"
+    },
+    {
+      "id": "son_thuy_trung_may_remix",
+      "name": "Sơn Thủy Trùng Mây Remix",
+      "keywords": [
+        "sơn thủy trùng mây remix",
+        "sơn",
+        "thủy",
+        "trùng",
+        "mây",
+        "remix"
+      ],
+      "file": "music/son_thuy_trung_may_remix.ogg",
+      "url": "https://cdn.jsdelivr.net/gh/thaihuy1101/Kho_nhac@main/music/son_thuy_trung_may_remix.ogg"
     }
   ]
 }

@@ -4,12 +4,31 @@ import json
 import subprocess
 import re
 
+import shutil
+
 if sys.platform == "win32":
     try:
         sys.stdout.reconfigure(encoding='utf-8')
         sys.stderr.reconfigure(encoding='utf-8')
     except Exception:
         pass
+
+def find_ffmpeg():
+    # 1. System PATH
+    found = shutil.which("ffmpeg")
+    if found:
+        return found
+    # 2. Local Winget Gyan.FFmpeg installation
+    local_appdata = os.environ.get("LOCALAPPDATA", "")
+    if local_appdata:
+        winget_path = os.path.join(local_appdata, "Microsoft", "WinGet", "Packages")
+        if os.path.exists(winget_path):
+            for root, dirs, files in os.walk(winget_path):
+                if "ffmpeg.exe" in files:
+                    return os.path.join(root, "ffmpeg.exe")
+    return "ffmpeg"
+
+FFMPEG_BIN = find_ffmpeg()
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 MP3_DIR = os.path.join(SCRIPT_DIR, "nhac_mp3_goc")
@@ -81,7 +100,7 @@ def main():
         
         # Chuyển đổi bằng ffmpeg sang 16kHz mono Opus chuẩn của Xiaozhi
         cmd = [
-            "ffmpeg", "-y", "-i", input_path,
+            FFMPEG_BIN, "-y", "-i", input_path,
             "-c:a", "libopus",
             "-ar", "16000",
             "-ac", "1",
