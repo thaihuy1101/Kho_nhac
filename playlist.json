@@ -1,18 +1,6 @@
 {
   "playlist": [
     {
-      "id": "intro_kho_nhac",
-      "name": "Intro Kho Nhac",
-      "keywords": [
-        "intro kho nhac",
-        "intro",
-        "kho",
-        "nhac"
-      ],
-      "file": "music/intro_kho_nhac.ogg",
-      "url": "https://cdn.jsdelivr.net/gh/thaihuy1101/Kho_nhac@main/music/intro_kho_nhac.ogg"
-    },
-    {
       "id": "son_thuy_trung_may_remix",
       "name": "Sơn Thủy Trùng Mây Remix",
       "keywords": [

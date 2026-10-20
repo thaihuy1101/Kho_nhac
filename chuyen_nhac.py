@@ -134,7 +134,14 @@ def main():
 
         existing_ids[slug_id] = song_entry
 
-    playlist_data["playlist"] = list(existing_ids.values())
+    # Chi giu lai nhung bai hat ma file .ogg thuc su con ton tai
+    valid_songs = []
+    for song in existing_ids.values():
+        target_ogg = os.path.join(SCRIPT_DIR, song.get("file", ""))
+        if os.path.exists(target_ogg):
+            valid_songs.append(song)
+
+    playlist_data["playlist"] = valid_songs
 
     with open(PLAYLIST_FILE, "w", encoding="utf-8") as f:
         json.dump(playlist_data, f, ensure_ascii=False, indent=2)
