@@ -55,6 +55,17 @@ def clean_slug(name):
     s = re.sub(r'_+', '_', s).strip('_')
     return s or "song"
 
+def get_clean_title(base_name):
+    # Tách tên bài hát gọn gàng trước dấu gạch ngang YouTube
+    parts = re.split(r'\s*-\s*', base_name)
+    title = parts[0].strip()
+    title = re.sub(r'\s*Nhạc Trend.*', '', title, flags=re.IGNORECASE)
+    title = re.sub(r'\s*\(Bản Tiktok\)', '', title, flags=re.IGNORECASE)
+    title = re.sub(r'\s+', ' ', title).strip()
+    if "remix" in base_name.lower() and "remix" not in title.lower():
+        title += " Remix"
+    return title.title()
+
 def generate_keywords(name):
     clean = name.replace("_", " ").replace("-", " ")
     words = clean.split()
@@ -123,7 +134,7 @@ def main():
         print(f"    [OK] Đã tạo {ogg_filename} ({file_size_kb} KB)")
 
         # Cập nhật playlist
-        display_name = base_name.replace("_", " ").replace("-", " ").title()
+        display_name = get_clean_title(base_name)
         song_entry = {
             "id": slug_id,
             "name": display_name,
