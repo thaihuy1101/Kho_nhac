@@ -1,0 +1,8 @@
+# Chi luu file nén .ogg tren GitHub de nhe kho va tai cuc nhanh cho ESP32
+nhac_mp3_goc/
+*.mp3
+*.wav
+*.m4a
+*.flac
+__pycache__/
+*.pyc
