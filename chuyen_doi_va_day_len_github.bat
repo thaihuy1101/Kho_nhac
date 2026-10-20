@@ -34,6 +34,10 @@ echo [3/3] Đang đẩy dữ liệu lên GitHub (git push origin main)...
 git push origin main
 
 echo.
+echo [*] Đang làm mới bộ nhớ đệm CDN jsDelivr...
+curl -s "https://purge.jsdelivr.net/gh/thaihuy1101/Kho_nhac@main/playlist.json" > nul
+
+echo.
 echo ======================================================================
 echo [THÀNH CÔNG] Kho nhạc đã được cập nhật lên GitHub thành công!
 echo Con robot Xiaozhi của bạn sẽ tự động thấy các bài hát mới này.

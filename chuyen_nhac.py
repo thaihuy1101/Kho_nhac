@@ -60,8 +60,15 @@ def generate_keywords(name):
     words = clean.split()
     kws = [clean.lower()]
     for w in words:
-        if len(w) > 2 and w.lower() not in kws:
+        if len(w) >= 2 and w.lower() not in kws:
             kws.append(w.lower())
+    # Add unaccented keywords (slug words) so searches without accents always match
+    slug = clean_slug(name).replace("_", " ")
+    if slug not in kws:
+        kws.append(slug)
+    for sw in slug.split():
+        if len(sw) >= 2 and sw not in kws:
+            kws.append(sw)
     return kws
 
 def main():
